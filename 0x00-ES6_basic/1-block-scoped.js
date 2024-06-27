@@ -1,11 +1,12 @@
-export default function taskBlock(trueOrFalse) {
-  const task = false;
-  const task2 = true;
+function getCurrentYear() {
+  const date = new Date();
+  return date.getFullYear();
+}
 
-  if (trueOrFalse) {
-    const task = true;
-    const task2 = false;
-  }
-
-  return [task, task2];
+export default function getBudgetForCurrentYear(income, gdp, capita) {
+  return {
+    [`income-${getCurrentYear()}`]: income,
+    [`gdp-${getCurrentYear()}`]: gdp,
+    [`capita-${getCurrentYear()}`]: capita,
+  };
 }
