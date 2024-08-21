@@ -4,7 +4,7 @@
  * @returns {void}
  */
 // Arrow function
-function displayMessage(args){
+function displayMessage(args) {
   console.log(args);
 }
 module.exports = displayMessage;
