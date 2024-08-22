@@ -6,7 +6,7 @@ function countStudents(path) {
     const data = fs.readFileSync(path, 'utf-8');
 
     // Split the data by new line and filter out any empty lines
-    const lines = data.split('\n').filter(line => line.trim() !== '');
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
 
     // Remove the header line
     lines.shift();
@@ -16,8 +16,8 @@ function countStudents(path) {
     const studentsByField = {};
 
     // Iterate through each line to process the student data
-    lines.forEach(line => {
-      const [firstname, lastname, age, field] = line.split(',');
+    lines.forEach((line) => {
+      const [firstname, , , field] = line.split(',');
 
       if (!studentsByField[field]) {
         studentsByField[field] = [];
@@ -30,10 +30,11 @@ function countStudents(path) {
 
     // Output the number of students in each field and their names
     for (const field in studentsByField) {
-      const students = studentsByField[field];
-      console.log(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
+      if (studentsByField.hasOwnProperty(field)) {
+        const students = studentsByField[field];
+        console.log(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
+      }
     }
-
   } catch (error) {
     throw new Error('Cannot load the database');
   }
